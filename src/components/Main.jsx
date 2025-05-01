@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import LeaderBoard from './LeaderBoard';
 import Market from './Market';
 import { getLeaderBoardData, getMarketData } from '../services/getData';
-import LoadingSpinner from './UI/LoadingSpinner';
+import LoadingSpinner from './ui/LoadingSpinner';
 import ErrorMessage from './ui/ErrorMessage';
 
 const Main = () => {
@@ -82,7 +82,7 @@ const Main = () => {
       {!loading && !players && !market && !error && (
         <p className="text-center text-cyan-500 mt-8">No se encontraron datos iniciales.</p>
       )}
-      
+
     </div>
   );
 };
