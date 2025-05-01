@@ -15,7 +15,7 @@ const LeaderBoardCard = ({ player }) => {
   }, [infected]);
 
   return (
-    <div className={`text-cyan-950 transition-all duration-1000 ease-in-out ${isGlowing ? 'animate-infected-glow' : 'bg-cyan-600'} p-2 rounded-xl m-1.5 md:text-xl lg:text-2xl xl:text-3xl 2xl:text-3xl`} 
+    <div className={`text-cyan-950 transition-all duration-1000 ease-in-out ${isGlowing ? 'animate-infected-glow' : 'bg-cyan-600'} p-2 rounded-xl m-1.5 md:text-lg lg:text-xl xl:text-xl 2xl:text-2xl`} 
     style={{animation: isGlowing ? 'infected-glow 2s infinite' : 'none'}}>
       <section className="flex flex-row justify-between">
         <div className="flex flex-row">
@@ -25,7 +25,7 @@ const LeaderBoardCard = ({ player }) => {
         </div>
         <div>{player.fishEmojis}</div>
       </section>
-      <section className="flex justify-between text-sm md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">
+      <section className="flex justify-between text-sm md:text-sm lg:text-lg xl:text-xl 2xl:text-2xl">
         <p className="">Level:{player.level}</p>
         <p className="">{player.xp}xp</p>
         <p className="text-amber-500">{player.gold} Gold</p>

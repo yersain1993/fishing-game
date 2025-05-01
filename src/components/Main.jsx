@@ -63,7 +63,7 @@ const Main = () => {
         <>
           {players && (
             <>
-              <h1 className="text-cyan-950 mt-5 font-[Eagle_Lake] text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl [text-shadow:0_0_7px_theme(colors.cyan.400),0_0_10px_theme(colors.cyan.400),0_0_21px_theme(colors.cyan.400),0_0_42px_theme(colors.cyan.700),0_0_82px_theme(colors.cyan.700),0_0_92px_theme(colors.cyan.700),0_0_102px_theme(colors.cyan.700),0_0_151px_theme(colors.cyan.700)]">
+              <h1 className="text-cyan-950 mt-5 font-[Eagle_Lake] text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl [text-shadow:0_0_7px_theme(colors.cyan.400),0_0_10px_theme(colors.cyan.400),0_0_21px_theme(colors.cyan.400),0_0_42px_theme(colors.cyan.700),0_0_82px_theme(colors.cyan.700),0_0_92px_theme(colors.cyan.700),0_0_102px_theme(colors.cyan.700),0_0_151px_theme(colors.cyan.700)]">
                 Leader Board
               </h1>
               <LeaderBoard players={players} />
@@ -71,7 +71,7 @@ const Main = () => {
           )}
           {market && (
             <>
-              <h1 className="text-cyan-950 mt-7 md:mt-9 lg:mt-10 xl:mt-15 font-[Eagle_Lake] text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl [text-shadow:0_0_7px_theme(colors.cyan.400),0_0_10px_theme(colors.cyan.400),0_0_21px_theme(colors.cyan.400),0_0_42px_theme(colors.cyan.700),0_0_82px_theme(colors.cyan.700),0_0_92px_theme(colors.cyan.700),0_0_102px_theme(colors.cyan.700),0_0_151px_theme(colors.cyan.700)]">
+              <h1 className="text-cyan-950 mt-7 md:mt-9 lg:mt-10 xl:mt-15 font-[Eagle_Lake] text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl [text-shadow:0_0_7px_theme(colors.cyan.400),0_0_10px_theme(colors.cyan.400),0_0_21px_theme(colors.cyan.400),0_0_42px_theme(colors.cyan.700),0_0_82px_theme(colors.cyan.700),0_0_92px_theme(colors.cyan.700),0_0_102px_theme(colors.cyan.700),0_0_151px_theme(colors.cyan.700)]">
                 Market
               </h1>
               <Market market={market} />
