@@ -12,12 +12,12 @@ const Market = ({ market }) => {
   console.log(market);
 
   return (
-    <div className="shadow-xl rounded-lg p-4 px-15 md:px-30 my-6">
+    <div className="shadow-sm rounded-lg p-4 px-15 md:px-30 my-6">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
         {market.map((item) => (
           <div
             key={item.id}
-            className="border  bg-[rgba(37,61,82,0.43)] rounded-lg p-4 flex flex-col justify-between hover:shadow-lg transition-shadow duration-200"
+            className="border bg-[rgba(37,61,82,0.43)] rounded-lg p-4 flex flex-col justify-between hover:shadow-lg hover:shadow-cyan-700 transition-shadow duration-200"
           >
             <div>
               <h3 className="text-lg font-semibold text-cyan-500">{item.name}</h3>
