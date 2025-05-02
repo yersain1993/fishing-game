@@ -3,10 +3,7 @@ import LeaderBoardCard from './commons/LeaderBoardCard';
 import { usePagination } from '../hooks/usePagination';
 
 const LeaderBoard = ({ players }) => {
-  const playersData = players;
   const leaderBoardPagination = usePagination(players, 7);
-
-  console.log(playersData);
 
   return (
     <div className="mt-6 w-auto flex flex-col justify-center items-center">

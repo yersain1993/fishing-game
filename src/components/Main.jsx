@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LeaderBoard from './LeaderBoard';
 import Market from './Market';
 import { getLeaderBoardData, getMarketData } from '../services/getData';
@@ -6,13 +6,18 @@ import LoadingSpinner from './ui/LoadingSpinner';
 import ErrorMessage from './ui/ErrorMessage';
 
 const Main = () => {
+  const VISUAL_DELAY_MS = 1500; // 1.5 secons to delay before show the new data
+  const UPDATE_INTERVAL_MS = 60 * 1000; // 1 minute
+
   const [players, setPlayers] = useState([]);
   const [market, setMarket] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isUpdating , setIsUpdating ] = useState(false)
   const [error, setError] = useState(null);
+  const updateTimeOutRef = useRef(null);
 
   const loadData = async () => {
-    setLoading(true);
+    if(isUpdating === false)  setLoading(true);
     setError(null);
     try {
       // Try load both endpoints concurrently
@@ -32,10 +37,11 @@ const Main = () => {
             : `Leaderboard: ${leaderBoardResult.reason.message}`,
         );
       }
-
+      // fulfilled means the request was successful
       if (marketResult.status === 'fulfilled') {
         setMarket(marketResult.value.items);
       } else {
+        // rejected means the request failed
         console.error('Market load error (SW/Red):', marketResult.reason);
         setError((prev) =>
           prev
@@ -47,12 +53,24 @@ const Main = () => {
       console.error('Unexpected error during loading:', error);
       setError(error.message || 'An unexpected error occurred.');
     } finally {
-      setLoading(false);
+      if (isUpdating === false) setLoading(false);
     }
   };
 
   useEffect(() => {
+    setIsUpdating(false);
     loadData();
+
+    const intervalId = setInterval(() => {
+      setIsUpdating(true);
+      loadData();
+    }, UPDATE_INTERVAL_MS);
+
+    return () => {
+      setIsUpdating(false);
+      clearInterval(intervalId);
+    };
+
   }, []);
 
   return (
