@@ -6,7 +6,7 @@ import LoadingSpinner from './ui/LoadingSpinner';
 import ErrorMessage from './ui/ErrorMessage';
 
 const Main = () => {
-  const UPDATE_INTERVAL_MS = 300 * 1000; // 5 minute
+  const UPDATE_INTERVAL_MS = 0.6 * 1000; // 1 minute
 
   const [players, setPlayers] = useState([]);
   const [market, setMarket] = useState([]);
@@ -15,7 +15,7 @@ const Main = () => {
   const [error, setError] = useState(null);
 
   const loadData = async () => {
-    if (isUpdating === false) setLoading(true);
+    players.length === 0 ? setLoading(true) : setIsUpdating(true);
     setError(null);
     try {
       // Try load both endpoints concurrently
@@ -25,7 +25,7 @@ const Main = () => {
       ]);
       // fulfilled means the request was successful
       if (leaderBoardResult.status === 'fulfilled') {
-        setPlayers(leaderBoardResult.value.players)
+        setPlayers(leaderBoardResult.value.players);
       } else {
         // rejected means the request failed
         console.error('Leaderboard load error (SW/Red):', leaderBoardResult.reason);
@@ -37,7 +37,7 @@ const Main = () => {
       }
       // fulfilled means the request was successful
       if (marketResult.status === 'fulfilled') {
-        setMarket(marketResult.value.items)   
+        setMarket(marketResult.value.items);   
       } else {
         // rejected means the request failed
         console.error('Market load error (SW/Red):', marketResult.reason);
@@ -51,30 +51,27 @@ const Main = () => {
       console.error('Unexpected error during loading:', error);
       setError(error.message || 'An unexpected error occurred.');
     } finally {
-      if (isUpdating === false) setLoading(false);
+      players === 0 ? setLoading(false) : setIsUpdating(true);
     }
   };
 
   useEffect(() => {
-    setIsUpdating(false);
     loadData();
 
     const intervalId = setInterval(() => {
-      setIsUpdating(true);
       loadData();
     }, UPDATE_INTERVAL_MS);
 
     return () => {
-      setIsUpdating(false);
       clearInterval(intervalId);
     };
   }, []);
 
   return (
     <div className="flex flex-col justify-center items-center">
-      {loading && <LoadingSpinner />}
+      {loading && !isUpdating && <LoadingSpinner />}
       {error && <ErrorMessage message={error} />}
-      {!loading && !error && (
+      {!(loading && !isUpdating) && !error && (
         <>
           {players && (
             <>
