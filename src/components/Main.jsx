@@ -6,7 +6,7 @@ import LoadingSpinner from './ui/LoadingSpinner';
 import ErrorMessage from './ui/ErrorMessage';
 
 const Main = () => {
-  const UPDATE_INTERVAL_MS = 0.6 * 1000; // 1 minute
+  const UPDATE_INTERVAL_MS = 60 * 1000; // 1 minute
 
   const [players, setPlayers] = useState([]);
   const [market, setMarket] = useState([]);
